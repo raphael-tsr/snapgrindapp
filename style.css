@@ -1,0 +1,377 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #1f1f1f;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+}
+
+nav ul li a {
+  color: #bb86fc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #3700b3;
+}
+
+main {
+  flex-grow: 1;
+  padding: 30px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.input-container label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: #eee;
+  font-size: 1rem;
+  width: 200px;
+  margin-left: 20px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #bb86fc;
+}
+
+button.button_envoyer {
+  background-color: #bb86fc;
+  color: #121212;
+  font-weight: 700;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: 80px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+button.button_envoyer:hover {
+  background-color: #9a4fff;
+}
+
+a.cta {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #bb86fc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a.cta:hover {
+  color: #3700b3;
+}
+
+/* -------------------------------------------------------------------------------BOOST */
+
+/* all */
+.boost {
+
+  width: 300px;
+  margin-left: 800px;
+}
+/* pq nous choisir */
+.benefits1 {
+  padding: 50px 20px;
+  text-align: center;
+  width: 1000px;
+  margin-left: -385px;
+  margin-top: 10px;
+}
+
+.benefit-list1 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.benefit1 {
+  flex: 1 1 250px; /* Largeur minimale 250px, s’adapte si plus de place */
+  max-width: 300px; /* Pour éviter que ça devienne trop large */
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(184, 139, 255, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.benefit1:hover {
+  transform: translateY(-5px);
+}
+
+.benefit1 img {
+  width: 50px;
+  margin-bottom: 15px;
+}
+
+.benefit1 h3 {
+  color: #b88bff;
+}
+
+/* zone texte */
+.zone_text_numb {
+  width: 50px;
+  background-color: rgb(0, 4, 255);
+}
+
+/* -------------------------------------------------------------------------------COMPTE EN VENTE */
+
+.acheter {
+  background-color: #bb86fc;
+  color: #121212;
+  font-weight: 700;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: 30px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+.comptes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espace entre les articles */
+  justify-content: center; /* Centrage horizontal */
+  padding: 20px;
+  background-color: #121212;
+  width: 1800px;
+  justify-content: center;
+  padding-right: 10px;
+}
+
+.card_fade-in {
+  background-color: rgba(82, 81, 81, 0.2); /* fond rouge transparent */
+  height: 220px;
+  border-radius: 15px;
+  padding: 20px;
+  transform: translateY(20px);
+  transition: background-color 0.8s ease, transform 0.8s ease;
+}
+
+ .titre {
+  margin-top: 0px;
+ }
+
+.main {
+  background-color: #121212;
+  margin: 10;
+  max-width: 1800px;
+  width: 1800px;
+  display: flex;
+  justify-content: center;    /* Centre horizontalement */
+}
+
+.info {
+  color: yellow;
+  margin-left: 50px;
+}
+
+/* -------------------------------------------------------------------------------ACCUEIL */
+
+/* machine a ecrire */
+#typewriter-container {
+  color: #ffffff;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+/* pq nous choisir */
+.benefits {
+  padding: 50px 20px;
+  text-align: center;
+  width: 1000px;
+  margin-left: -250px;
+  margin-top: 10px;
+}
+
+.benefit-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.benefit {
+  flex: 1 1 250px; /* Largeur minimale 250px, s’adapte si plus de place */
+  max-width: 300px; /* Pour éviter que ça devienne trop large */
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(184, 139, 255, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+}
+
+.benefit img {
+  width: 50px;
+  margin-bottom: 15px;
+}
+
+.benefit h3 {
+  color: #b88bff;
+}
+
+
+/* conteur de score */
+/* score */
+.snap-counter {
+  font-size: 3em;
+  font-weight: bold;
+  color: #b88bff;
+  width: 250px;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(184, 139, 255, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  
+}
+/* texte */
+.counter{ 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+  width: 500px;
+}
+
+/* -------------------------------------------------------------------------------CONTACT */
+
+/* pq nous contacter */
+
+.benefits2 {
+  padding: 50px 20px;
+  text-align: center;
+  width: 1000px;
+  margin-left: 435px;
+  margin-top: 10px;
+}
+
+.benefit-list2 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.benefit2 {
+  flex: 1 1 250px; /* Largeur minimale 250px, s’adapte si plus de place */
+  max-width: 300px; /* Pour éviter que ça devienne trop large */
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(184, 139, 255, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.benefit2:hover {
+  transform: translateY(-5px);
+}
+
+.benefit2 img {
+  width: 50px;
+  margin-bottom: 15px;
+}
+
+.benefit2 h3 {
+  color: #b88bff;
+}
+
+/* paypal */
+.paypal-section {
+  text-align: center;
+  margin: 60px 20px;
+  padding: 30px;
+  background: #1a1a1a;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(184, 139, 255, 0.1);
+}
+
+.paypal-section h2 {
+  color: #b88bff;
+  margin-bottom: 20px;
+}
+
+.paypal-qr {
+  max-width: 300px;
+  width: 80%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.paypal-section a {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Adaptations Mobile - max-width: 768px */
+
+/* Adaptations Mobile - max-width: 768px */
+

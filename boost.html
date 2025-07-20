@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boost personnalisé - SnapBoost</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Commande de boost personnalisé</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="comptes.html">Comptes à vendre</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="boost">
+    <main>
+      <form class="fade-in" id="boostForm">
+        <div class="input-container">
+          <label>Pseudo Discord :</label>
+          <input type="text" id="pseudo" required />
+        </div>
+
+        <div class="input-container">
+          <label>Score souhaité :</label>
+          <input type="number" id="scoreInput" min="5000" max="1000000" step="5000" value="5000" onchange="updatePrice()" />
+          <p id="error-message">❌ Le maximum est 1 000 000. Si vous voulez plus, contactez-moi.</p>
+        </div>
+
+        <p id="price">Prix : 1€ / ≈ 1.10$</p>
+
+        <button type="submit" class="button_envoyer">Envoyer</button>
+        <a href="https://discord.gg/Wq7XUJgT" class="cta">Rejoindre le Discord</a>
+      </form>
+      <section class="benefits1">
+        <h2>Pourquoi choisir SnapGrind ?</h2>
+        <div class="benefit-list1">
+          <div class="benefit1">
+            <img src="delais-removebg-preview (2).png" alt="Delais">
+            <h3>Délai adapté à votre commande</h3>
+            <p>Les délais varient selon la personnalisation et le stock disponible.</p>
+          </div>
+          <div class="benefit1">
+            <img src="securisé-removebg-preview.png" alt="Sécurisé">
+            <h3>100% Sécurisé</h3>
+            <p>Aucun bannissement, tous les comptes sont vérifiés.</p>
+          </div>
+          <div class="benefit1">
+            <img src="support-removebg-preview.png" alt="Support">
+            <h3>Support réactif</h3>
+            <p>Besoin d'aide ? On vous répond en moins d'1h sur Discord.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <script>
+    function updatePrice() {
+      const score = parseInt(document.getElementById('scoreInput').value);
+      let price = 0;
+
+      if (score > 1000000) {
+        document.getElementById('error-message').style.display = 'block';
+        document.getElementById('price').textContent = '';
+        return;
+      } else {
+        document.getElementById('error-message').style.display = 'none';
+      }
+
+      if (score === 1000000) {
+        price = 140;
+      } else if (score === 500000) {
+        price = 75;
+      } else if (score === 100000) {
+        price = 17;
+      } else if (score === 50000) {
+        price = 9;
+      } else {
+        price = score / 5000;
+      }
+
+      const dollar = (price * 1.1).toFixed(2);
+      document.getElementById('price').textContent = `Prix : ${price}€ / ≈ ${dollar}$`;
+    }
+
+    document.getElementById('boostForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const pseudo = document.getElementById('pseudo').value.trim();
+      const score = parseInt(document.getElementById('scoreInput').value);
+      const errorMsg = document.getElementById('error-message');
+
+      if (!pseudo) {
+        alert('Merci d’entrer ton pseudo Discord.');
+        return;
+      }
+
+      if (score > 1000000) {
+        errorMsg.style.display = 'block';
+        return;
+      } else {
+        errorMsg.style.display = 'none';
+      }
+
+      const webhookURL = 'https://discord.com/api/webhooks/1395795441592832000/5HSsyDKwXYYHdoKML7enR2ONjaxqTJsR1TiIHL-wSupOxTOUk5RCT4cAZqk4PH-LsHy5';
+
+      const msg = {
+        content: `📩 Nouvelle commande boost:\n👤 Pseudo Discord : ${pseudo}\n🔥 Score souhaité : ${score}`
+      };
+
+      await fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(msg)
+      });
+
+      alert('Commande envoyée avec succès !');
+      document.getElementById('boostForm').reset();
+      updatePrice();
+    });
+
+    updatePrice(); // Initialise le prix au chargement
+  </script>
+  
+</body>
+
+</html>

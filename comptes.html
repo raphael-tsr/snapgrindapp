@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comptes à vendre - SnapGrind</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Comptes disponibles</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="boost.html">Boost personnalisé</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="comptes-list">
+
+      <article class="card_fade-in">
+        <h3 class="titre">Compte #1</h3>
+        <p>SnapScore : 10K</p>
+        <p>Prix : 2€</p>
+        <button class="acheter" onclick="ouvrirPopup('Compte #1')">Acheter</button>
+        <a href="https://discord.gg/Wq7XUJgT" class="cta">Rejoindre le Discord</a>
+      </article>
+
+      <article class="card_fade-in">
+        <h3 class="titre">Compte #2</h3>
+        <p>SnapScore : 55K</p>
+        <p>Prix : 9€</p>
+        <button class="acheter" onclick="ouvrirPopup('Compte #2')">Acheter</button>
+        <a href="https://discord.gg/Wq7XUJgT" class="cta">Rejoindre le Discord</a>
+      </article>
+
+      <article class="card_fade-in">
+        <h3 class="titre">Compte #3</h3>
+        <p>SnapScore : 1M</p>
+        <p>Prix : 140€</p>
+        <button class="acheter" onclick="ouvrirPopup('Compte #3')">Acheter</button>
+        <a href="https://discord.gg/Wq7XUJgT" class="cta">Rejoindre le Discord</a>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Popup -->
+  <div id="popup-commande" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+    <div id="popup-content" style="background: #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #b88bff; width: 300px; text-align: center; position: relative;">
+      <button onclick="fermerPopup()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">❌</button>
+      <h2 style="color: white;">Entrez votre pseudo Discord</h2>
+      <input type="text" id="pseudoDiscord" placeholder="ex: user" style="width: 200px; padding: 10px; margin-top: 15px; border-radius: 8px; border: none;">
+      <button onclick="envoyerCommande()" style="margin-top: 20px; padding: 10px 20px; background: #b88bff; border: none; color: white; border-radius: 10px; cursor: pointer;">Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    let compteACommander = "";
+
+    function ouvrirPopup(nomCompte) {
+      compteACommander = nomCompte;
+      document.getElementById("popup-commande").style.display = "flex";
+    }
+
+    function fermerPopup() {
+      document.getElementById("popup-commande").style.display = "none";
+      document.getElementById("pseudoDiscord").value = "";
+    }
+
+    function envoyerCommande() {
+      const pseudo = document.getElementById("pseudoDiscord").value.trim();
+      if (pseudo === "") {
+        alert("Veuillez entrer votre pseudo Discord.");
+        return;
+      }
+
+      const webhookURL = "https://discord.com/api/webhooks/1395795441592832000/5HSsyDKwXYYHdoKML7enR2ONjaxqTJsR1TiIHL-wSupOxTOUk5RCT4cAZqk4PH-LsHy5"; // 🔁 Remplace avec ton vrai webhook
+
+      const data = {
+        content: `📦 Nouvelle commande reçue !\n👤 Pseudo Discord : **${pseudo}**\n🛒 Compte commandé : **${compteACommander}**`
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(response => {
+        if (response.ok) {
+          fermerPopup();
+          alert("🎉 Votre commande a été envoyée !");
+        } else {
+          alert("❌ Une erreur est survenue.");
+        }
+      });
+    }
+
+    // Fermer la popup quand on clique à l’extérieur
+    window.addEventListener("click", function(e) {
+      const popup = document.getElementById("popup-commande");
+      const content = document.getElementById("popup-content");
+      if (e.target === popup) {
+        fermerPopup();
+      }
+    });
+  </script>
+
+</body>
+</html>
