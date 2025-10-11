@@ -2,145 +2,114 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SnapGrind - Accueil</title>
-  <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raphaël Teissier - Développeur Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" class="icon-container" href="logo.png"image/png" />
 </head>
 
 <body>
 
-  <header>
-    <h1 class="fade-in">SnapGrind</h1>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="typing">Raphaël Teissier</h1>
+            <p>Développeur Web passionné, 17 ans</p>
+            <a href="#contact" class="btn">Contactez-moi</a>
+        </div>
+    </header>
 
-    <!-- Bouton hamburger pour mobile -->
-    <button class="hamburger">&#9776;</button>
-
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="comptes.html">Comptes à vendre</a></li>
-        <li><a href="boost.html">Boost personnalisé</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="avis.html">Avis</a></li>
-      </ul>
-    </nav>
-  </header>
-
-
-  <main class="all">
-    <section class="hero fade-in">
-      <div id="typewriter-container"></div>
-      <a href="boost.html" class="cta">Commander un boost</a>
-      <a href="comptes.html" class="cta">Voir les comptes</a>
+    <!-- À PROPOS -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>À propos de moi</h2>
+            <p>Bonjour, je m'appelle Raphaël Teissier, j’ai 17 ans et je suis passionné par le développement web.
+               Je propose de créer gratuitement des sites internet ou de mettre à jour des sites existants pour
+               enrichir mon expérience et constituer un réseau.</p>
+        </div>
     </section>
 
-    <section class="counter">
-      <h2>Boosté votre SnapScore</h2>
-      <div id="score" class="snap-counter">0</div>
+    <!-- SERVICES -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Mes services</h2>
+            <div class="cards">
+                <div class="card">
+                    <i class="fas fa-laptop-code fa-3x"></i>
+                    <h3>Création de sites</h3>
+                    <p>Je crée des sites modernes et adaptés à vos besoins. La seule dépense est le domaine et
+                        l'hébergement.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-sync-alt fa-3x"></i>
+                    <h3>Mise à jour</h3>
+                    <p>Je peux mettre à jour votre site existant gratuitement pour améliorer sa présentation et ses
+                        performances.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="benefits">
-      <h2>Pourquoi choisir SnapGrind ?</h2>
-      <div class="benefit-list">
-        <div class="benefit">
-          <img src="delais-removebg-preview (2).png" alt="Delais">
-          <h3>Délai adapté à votre commande</h3>
-          <p>Les délais varient selon la personnalisation et le stock disponible.</p>
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contactez-moi</h2>
+            <p>Email : <a href="mailto:raphael.teissier6@gmail.com">raphael.teissier6@gmail.com</a></p>
+            <p>Fiverr : <a href="https://fiverr.com/s/NNyx7rQ" target="_blank">Mon profil Fiverr</a></p>
         </div>
-        <div class="benefit">
-          <img src="securisé-removebg-preview.png" alt="Sécurisé">
-          <h3>100% Sécurisé</h3>
-          <p>Aucun bannissement, tous les comptes sont vérifiés.</p>
-        </div>
-        <div class="benefit">
-          <img src="support-removebg-preview.png" alt="Support">
-          <h3>Support réactif</h3>
-          <p>Besoin d'aide ? On vous répond en moins d'1h sur Discord.</p>
-        </div>
-      </div>
     </section>
-  </main>
 
-  <!-- Script : machine à écrire -->
-  <script class="all">
-    const txts = [
-      "Boostez votre SnapScore",
-      "Achetez un compte prêt à l'emploi",
-      "Livraison via Discord"
-    ];
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Raphaël Teissier - Tous droits réservés</p>
+    </footer>
 
-    let i = 0;
-    let j = 0;
-    let currentTxt = "";
-
-    function typeNextChar() {
-      if (j < txts[i].length) {
-        currentTxt += txts[i][j];
-        document.getElementById("typewriter-container").lastElementChild.innerHTML = currentTxt;
-        j++;
-        setTimeout(typeNextChar, 30);
-      } else {
-        i++;
-        if (i < txts.length) {
-          setTimeout(() => {
-            currentTxt = "";
-            j = 0;
-            const newLine = document.createElement("div");
-            newLine.classList.add("typewriter-line");
-            document.getElementById("typewriter-container").appendChild(newLine);
-            typeNextChar();
-          }, 300);
+    <!-- SCRIPT -->
+    <script>
+        // Typing effect
+        const typing = document.querySelector('.typing');
+        const text = 'Raphaël Teissier';
+        let index = 0;
+        function type() {
+            if (index < text.length) {
+                typing.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 150);
+            }
         }
-      }
-    }
+        typing.textContent = '';
+        type();
 
-    const firstLine = document.createElement("div");
-    firstLine.classList.add("typewriter-line");
-    document.getElementById("typewriter-container").appendChild(firstLine);
-    typeNextChar();
-  </script>
+        // Scroll smooth
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
-  <!-- Script : compteur animé -->
-  <script class="all">
-    const scoreDisplay = document.getElementById("score");
-    const targetScore = 1000000;
-    const duration = 3000; // 1 seconde
-    const frameRate = 60;
-    const totalFrames = Math.round((duration / 1000) * frameRate);
-    let currentFrame = 0;
+        // Formulaire
+        document.getElementById("contact-form").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
 
-    const easeOutQuad = (t) => t * (2 - t);
-
-    function animateScore() {
-      const progress = currentFrame / totalFrames;
-      const easedProgress = easeOutQuad(progress);
-      const currentScore = Math.floor(targetScore * easedProgress);
-
-      scoreDisplay.textContent = currentScore.toLocaleString() + " ";
-
-      if (currentFrame < totalFrames) {
-        currentFrame++;
-        requestAnimationFrame(animateScore);
-      } else {
-        scoreDisplay.textContent = targetScore.toLocaleString() + " ";
-      }
-    }
-
-    animateScore();
-  </script>
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const menu = document.querySelector('nav ul.menu');
-
-    hamburger.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
-  </script>
-
-
-  <script src="script.js"></script>
+            try {
+                const response = await fetch('/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const text = await response.text();
+                alert(text);
+                this.reset();
+            } catch (err) {
+                console.error(err);
+                alert("Erreur lors de l'envoi. Vérifie ton serveur.");
+            }
+        });
+    </script>
 </body>
-
 </html>
