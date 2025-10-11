@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
 }
 
 header {
@@ -371,7 +372,316 @@ a.cta:hover {
   text-decoration: underline;
 }
 
-/* Adaptations Mobile - max-width: 768px */
+/* Hamburger hidden sur desktop */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #bb86fc;
+  cursor: pointer;
+  margin-left: auto; /* Pour le pousser à droite */
+  margin-top: -50px;
+  margin-right: -20px;
+}
 
-/* Adaptations Mobile - max-width: 768px */
+/* -------------------------------------------------------------------------------RESPONSIVE - 600px et moins */
+
+@media screen and (max-width: 600px) {
+
+    .hamburger {
+    display: block;
+  }
+
+  nav ul.menu {
+    display: none; /* Masqué par défaut sur mobile */
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  nav ul.menu.active {
+    display: flex; /* Affiché quand le hamburger est cliqué */
+  }
+
+
+
+  body {
+    padding: 10px;
+    font-size: 14px; /* Texte plus lisible sur mobile */
+    
+  }
+
+  header {
+    padding: 10px 15px;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 10px 0;
+  }
+
+  main {
+    padding: 20px 10px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  button.button_envoyer,
+  .acheter {
+    width: 100%;
+    margin-left: 0;
+    padding: 10px 0;
+  }
+
+  .boost {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .benefits, .benefits1, .benefits2 {
+    width: 100%;
+    margin-left: 0;
+    padding: 20px 10px;
+  }
+
+  .benefit-list,
+  .benefit-list1,
+  .benefit-list2,
+  .comptes-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .card_fade-in {
+    width: 250px; /* même largeur que tablette/800px */
+    padding: 15px;
+    margin-right: -100px;
+  }
+
+  .main {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .zone_text_numb {
+    width: 40px;
+  }
+
+  #typewriter-container {
+    font-size: 1.4em;
+    margin-top: 0;
+  }
+
+  .snap-counter {
+    width: 90%;
+    font-size: 2em;
+    padding: 15px;
+  }
+
+  .counter {
+    width: 100%;
+  }
+
+  .paypal-section {
+    width: 90%;
+    padding: 20px;
+    margin: 30px auto;
+  }
+
+  .paypal-qr {
+    width: 80%;
+  }
+
+  /* Menu déroulant pour mobile */
+  nav ul li.dropdown .dropdown-menu {
+    position: relative;
+    top: 0;
+    box-shadow: none;
+    display: none; /* On l'affiche au clic via JS */
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) and (min-width: 601px) {
+
+  body {
+    padding: 15px; /* un peu moins que desktop */
+    font-size: 15px; /* légèrement plus petit pour s'adapter */
+    
+  }
+
+  header {
+    padding: 15px 20px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  /* Menu horizontal mais avec plus de flexibilité */
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap; /* permet de passer à la ligne si trop long */
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    padding: 0;
+  }
+
+  nav ul li {
+    width: auto; /* pas 100%, garde la largeur automatique */
+  }
+
+  nav ul li a {
+    display: inline-block;
+    padding: 8px 12px;
+  }
+
+  main {
+    padding: 25px 15px;
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 90%; /* s’adapte mais pas full width */
+    margin-left: 0;
+  }
+
+  button.button_envoyer,
+  .acheter {
+    width: auto; /* boutons gardent leur largeur naturelle */
+    margin-left: 0;
+    padding: 10px 20px;
+  }
+
+  .boost {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .benefits, .benefits1, .benefits2 {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 15px;
+  }
+
+  .benefit-list,
+  .benefit-list1,
+  .benefit-list2,
+  .comptes-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .card_fade-in {
+    width: 250px; /* plus petit mais pas full width */
+    padding: 15px;
+  }
+
+  .main {
+    width: 100%;
+    flex-direction: row; /* conserve disposition horizontale si possible */
+    flex-wrap: wrap;
+  }
+
+  .zone_text_numb {
+    width: 50px;
+  }
+
+  #typewriter-container {
+    font-size: 1.6em;
+    margin-top: 0;
+  }
+
+  .snap-counter {
+    width: 250px;
+    font-size: 2.5em;
+    padding: 15px;
+  }
+
+  .counter {
+    width: 100%;
+  }
+
+  .paypal-section {
+    width: 95%;
+    padding: 25px;
+    margin: 30px auto;
+  }
+
+  .paypal-qr {
+    width: 50%;
+    max-width: 250px;
+  }
+
+@media (min-width: 801px) and (max-width: 1900px) {
+
+  body {
+    padding: 25px;
+    font-size: 18px;
+    
+  }
+
+  .comptes-list, /* ou .benefit-list selon les sections */
+  .benefit-list,
+  .benefit-list1,
+  .benefit-list2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centre toutes les cartes */
+    gap: 30px;
+    width: 100%; /* prend toute la largeur disponible */
+    max-width: 100%; /* évite débordement */
+    margin: 0 auto; /* centre horizontalement */
+    box-sizing: border-box; /* inclut padding dans la largeur */
+  }
+
+  .card_fade-in {
+    width: 200px;
+    padding: 40px;
+    flex: 0 0 auto; /* empêche l’expansion des cartes */
+    margin: center;
+  }
+
+  .main {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center; /* centre le contenu */
+  }
+}
+
+}
+
+
 

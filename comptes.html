@@ -1,18 +1,246 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comptes à vendre - SnapGrind</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <style>
+    /* -------------------------------------------------------------------------------BASE */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      /* empêche le scroll horizontal */
+    }
+
+    header {
+      background-color: #1f1f1f;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: #bb86fc;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #3700b3;
+    }
+
+    /* -------------------------------------------------------------------------------MAIN */
+    main {
+      flex-grow: 1;
+      padding: 30px 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+
+    /* -------------------------------------------------------------------------------CARDS */
+    .comptes-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+    }
+
+    .card_fade-in {
+      background-color: rgba(82, 81, 81, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .card_fade-in h3,
+    .card_fade-in p,
+    .card_fade-in button,
+    .card_fade-in a {
+      text-align: center;
+    }
+
+    /* -------------------------------------------------------------------------------BUTTONS & INPUTS */
+    input[type="text"],
+    input[type="number"],
+    button.button_envoyer,
+    .acheter {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px auto;
+      display: block;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button.button_envoyer,
+    .acheter {
+      background-color: #bb86fc;
+      color: #121212;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button.button_envoyer:hover,
+    .acheter:hover {
+      background-color: #9a4fff;
+    }
+
+    /* -------------------------------------------------------------------------------RESPONSIVE < 600px */
+    @media screen and (max-width: 600px) {
+
+      body {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav ul li a {
+        padding: 10px 0;
+      }
+
+      main {
+        padding: 15px 10px;
+      }
+
+      .card_fade-in {
+        width: 90%;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      button.button_envoyer,
+      .acheter {
+        max-width: 100%;
+      }
+    }
+
+    /* -------------------------------------------------------------------------------RESPONSIVE 601px - 800px */
+    @media screen and (min-width: 601px) and (max-width: 800px) {
+
+      body {
+        padding: 15px;
+        font-size: 15px;
+      }
+
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .card_fade-in {
+        width: 250px;
+      }
+
+      main {
+        padding: 20px;
+      }
+    }
+
+    /* -------------------------------------------------------------------------------RESPONSIVE 801px - 1900px */
+    @media screen and (min-width: 801px) {
+
+      body {
+        padding: 25px;
+        font-size: 18px;
+        overflow-x: hidden;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      nav ul li a {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+      }
+
+      main {
+        max-width: 1200px;
+        padding: 35px 20px;
+        justify-content: center;
+      }
+
+      .card_fade-in {
+        width: 300px;
+        padding: 20px;
+      }
+
+      .comptes-list {
+        justify-content: center;
+        gap: 30px;
+      }
+    }
+  </style>
 
   <header>
-    <h1>Comptes disponibles</h1>
+    <h1 class="fade-in">Comptes Disponibles</h1>
+
+    <!-- Bouton hamburger pour mobile -->
+    <button class="hamburger">&#9776;</button>
+
     <nav>
-      <ul>
+      <ul class="menu">
         <li><a href="index.html">Accueil</a></li>
+        <li><a href="comptes.html">Comptes à vendre</a></li>
         <li><a href="boost.html">Boost personnalisé</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="avis.html">Avis</a></li>
@@ -51,12 +279,17 @@
   </main>
 
   <!-- Popup -->
-  <div id="popup-commande" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
-    <div id="popup-content" style="background: #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #b88bff; width: 300px; text-align: center; position: relative;">
-      <button onclick="fermerPopup()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">❌</button>
+  <div id="popup-commande"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+    <div id="popup-content"
+      style="background: #1a1a1a; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #b88bff; width: 300px; text-align: center; position: relative;">
+      <button onclick="fermerPopup()"
+        style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">❌</button>
       <h2 style="color: white;">Entrez votre pseudo Discord</h2>
-      <input type="text" id="pseudoDiscord" placeholder="ex: user" style="width: 200px; padding: 10px; margin-top: 15px; border-radius: 8px; border: none;">
-      <button onclick="envoyerCommande()" style="margin-top: 20px; padding: 10px 20px; background: #b88bff; border: none; color: white; border-radius: 10px; cursor: pointer;">Envoyer</button>
+      <input type="text" id="pseudoDiscord" placeholder="ex: user"
+        style="width: 200px; padding: 10px; margin-top: 15px; border-radius: 8px; border: none;">
+      <button onclick="envoyerCommande()"
+        style="margin-top: 20px; padding: 10px 20px; background: #b88bff; border: none; color: white; border-radius: 10px; cursor: pointer;">Envoyer</button>
     </div>
   </div>
 
@@ -101,7 +334,7 @@
     }
 
     // Fermer la popup quand on clique à l’extérieur
-    window.addEventListener("click", function(e) {
+    window.addEventListener("click", function (e) {
       const popup = document.getElementById("popup-commande");
       const content = document.getElementById("popup-content");
       if (e.target === popup) {
@@ -110,5 +343,15 @@
     });
   </script>
 
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('nav ul.menu');
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
 </body>
+
 </html>

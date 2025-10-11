@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SnapGrind - Accueil</title>
   <link rel="stylesheet" href="style.css">
-  
+
 </head>
 
 <body>
 
   <header>
     <h1 class="fade-in">SnapGrind</h1>
+
+    <!-- Bouton hamburger pour mobile -->
+    <button class="hamburger">&#9776;</button>
+
     <nav>
-      <ul>
+      <ul class="menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="comptes.html">Comptes à vendre</a></li>
         <li><a href="boost.html">Boost personnalisé</a></li>
@@ -22,6 +27,7 @@
       </ul>
     </nav>
   </header>
+
 
   <main class="all">
     <section class="hero fade-in">
@@ -41,7 +47,7 @@
         <div class="benefit">
           <img src="delais-removebg-preview (2).png" alt="Delais">
           <h3>Délai adapté à votre commande</h3>
-            <p>Les délais varient selon la personnalisation et le stock disponible.</p>
+          <p>Les délais varient selon la personnalisation et le stock disponible.</p>
         </div>
         <div class="benefit">
           <img src="securisé-removebg-preview.png" alt="Sécurisé">
@@ -124,7 +130,17 @@
 
     animateScore();
   </script>
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('nav ul.menu');
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
 
   <script src="script.js"></script>
 </body>
+
 </html>

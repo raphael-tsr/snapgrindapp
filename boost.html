@@ -24,14 +24,17 @@
 
 <body>
   <header>
-    <h1>Commande de boost personnalisé</h1>
+    <h1 class="fade-in">Commande de boost personnalisé</h1>
+
+    <!-- Bouton hamburger pour mobile -->
+    <button class="hamburger">&#9776;</button>
+
     <nav>
-      <ul>
+      <ul class="menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="comptes.html">Comptes à vendre</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="avis.html">Avis</a></li>
-        
       </ul>
     </nav>
   </header>
@@ -46,7 +49,8 @@
 
         <div class="input-container">
           <label>Score souhaité :</label>
-          <input type="number" id="scoreInput" min="5000" max="1000000" step="5000" value="5000" onchange="updatePrice()" />
+          <input type="number" id="scoreInput" min="5000" max="1000000" step="5000" value="5000"
+            onchange="updatePrice()" />
           <p id="error-message">❌ Le maximum est 1 000 000. Si vous voulez plus, contactez-moi.</p>
         </div>
 
@@ -145,7 +149,16 @@
 
     updatePrice(); // Initialise le prix au chargement
   </script>
-  
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('nav ul.menu');
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
 </body>
 
 </html>

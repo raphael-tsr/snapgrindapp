@@ -173,9 +173,13 @@
 
 <body>
     <header>
-        <h1>Avis Clients</h1>
+        <h1 class="fade-in">Avis Clients</h1>
+
+        <!-- Bouton hamburger pour mobile -->
+        <button class="hamburger">&#9776;</button>
+
         <nav>
-            <ul>
+            <ul class="menu">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="comptes.html">Comptes à vendre</a></li>
                 <li><a href="boost.html">Boost personnalisé</a></li>
@@ -229,13 +233,15 @@
 
         <script>
             const API_BASE = 'http://localhost:3000/api';
-            let offset = 0, perPage = 25;
+            let offset = 0;
+            let perPage = 25;
             const avisList = document.getElementById('avis-list');
 
             function escapeHtml(s) {
                 return s ? s.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])) : '';
             }
 
+            // Récupérer le résumé
             async function fetchSummary() {
                 const res = await fetch(API_BASE + '/summary');
                 const data = await res.json();
@@ -243,27 +249,32 @@
                 document.getElementById('moyenne').textContent = (data.average ? data.average.toFixed(2) : '—') + ' / 5';
             }
 
+            // Charger les avis
             async function loadReviews(reset = false) {
                 perPage = parseInt(document.getElementById('perPage').value, 10);
-                if (reset) { offset = 0; avisList.innerHTML = ''; }
+                if (reset) {
+                    offset = 0;
+                    avisList.innerHTML = '';
+                }
 
                 const res = await fetch(`${API_BASE}/reviews`);
                 const data = await res.json();
 
-                // On suit strictement l'ordre du JSON renvoyé par le serveur
-                const slice = data.reviews.slice(offset, offset + perPage);
+                // Tri par date décroissante (plus récent en haut)
+                const sortedReviews = data.reviews.sort((a, b) => b.createdAt - a.createdAt);
 
+                const slice = sortedReviews.slice(offset, offset + perPage);
                 slice.forEach(r => {
                     const stars = '⭐'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
                     const div = document.createElement('div');
                     div.className = 'avis';
                     div.innerHTML = `
-                <div class="avis-header">
-                    <span class="nom">${escapeHtml(r.pseudo)}</span>
-                    <span class="note">${stars}</span>
-                </div>
-                <p class="commentaire">${escapeHtml(r.comment)}</p>
-            `;
+            <div class="avis-header">
+                <span class="nom">${escapeHtml(r.pseudo)}</span>
+                <span class="note">${stars}</span>
+            </div>
+            <p class="commentaire">${escapeHtml(r.comment)}</p>
+        `;
                     avisList.appendChild(div);
                 });
 
@@ -273,6 +284,7 @@
                 document.getElementById('loadMore').style.display = (offset < data.total ? 'block' : 'none');
             }
 
+            // Envoyer un nouvel avis
             async function submitReview() {
                 const pseudo = document.getElementById('pseudoInput').value.trim();
                 const rating = Number(document.getElementById('starsSelect').value);
@@ -295,7 +307,7 @@
                     document.getElementById('pseudoInput').value = '';
                     document.getElementById('commentInput').value = '';
 
-                    // Recharge le résumé et les avis dans l'ordre du JSON
+                    // Met à jour le résumé et recharge les avis en haut
                     fetchSummary();
                     loadReviews(true);
 
@@ -305,16 +317,25 @@
                 }
             }
 
+            // Listeners
             document.getElementById('submitReview').addEventListener('click', submitReview);
             document.getElementById('refreshBtn').addEventListener('click', () => { loadReviews(true); fetchSummary(); });
             document.getElementById('perPage').addEventListener('change', () => loadReviews(true));
             document.getElementById('loadMore').addEventListener('click', () => loadReviews(false));
 
+            // Initial load
             fetchSummary();
             loadReviews(true);
         </script>
 
+        <script>
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.querySelector('nav ul.menu');
 
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        </script>
     </main>
 </body>
 
