@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avis clients - SnapGrind</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #121212;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #1f1f1f;
+            padding: 14px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        nav a {
+            color: #bb86fc;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 18px;
+        }
+
+        .top-stats {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .avg {
+            background: #1a1a1a;
+            padding: 16px;
+            border-radius: 10px;
+            min-width: 220px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(184, 139, 255, 0.06);
+        }
+
+        .avg h2 {
+            margin: 0;
+            color: #b88bff;
+        }
+
+        .avg p {
+            margin: 6px 0 0 0;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn {
+            background: #bb86fc;
+            color: #121212;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            background: #9a4fff;
+        }
+
+        .avis-container {
+            margin-top: 12px;
+        }
+
+        .avis {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 8px rgba(184, 139, 255, 0.04);
+        }
+
+        .avis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .nom {
+            color: #bb86fc;
+            font-weight: 800;
+        }
+
+        .note {
+            font-weight: 800;
+            color: var(--gold, #ffd740);
+        }
+
+        .commentaire {
+            color: #ccc;
+            margin: 0;
+            line-height: 1.45;
+        }
+
+        .add-form {
+            background: #151515;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #222;
+            color: #eee;
+        }
+
+        textarea {
+            min-height: 70px;
+            width: 100%;
+            resize: vertical;
+        }
+
+        .load-more {
+            display: block;
+            margin: 18px auto;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Avis Clients</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="comptes.html">Comptes à vendre</a></li>
+                <li><a href="boost.html">Boost personnalisé</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="top-stats">
+            <div class="avg">
+                <h2>Moyenne des avis</h2>
+                <p id="moyenne">— / 5</p>
+                <p class="small" id="totalReviews">Total avis : —</p>
+            </div>
+            <div style="flex:1; min-width:260px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                        <p class="small">Affichage : <span id="displayCount">0</span> / <span id="totalCount">0</span>
+                        </p>
+                    </div>
+                    <div class="controls">
+                        <label class="small" for="perPage">Afficher</label>
+                        <select id="perPage">
+                            <option value="10">10</option>
+                            <option value="25" selected>25</option>
+                            <option value="50">50</option>
+                        </select>
+                        <button id="refreshBtn" class="btn">Rafraîchir</button>
+                    </div>
+                </div>
+                <div class="add-form">
+                    <div class="form-row"><label>Pseudo</label><input id="pseudoInput" type="text"
+                            placeholder="Ex: DarkKnight"></div>
+                    <div class="form-row"><label>Note</label><select id="starsSelect">
+                            <option value="5">5 étoiles</option>
+                            <option value="4">4 étoiles</option>
+                            <option value="3">3 étoiles</option>
+                            <option value="2">2 étoiles</option>
+                            <option value="1">1 étoile</option>
+                        </select></div>
+                    <div class="form-row"><label>Commentaire</label><textarea id="commentInput"
+                            placeholder="Ton retour ..."></textarea></div>
+                    <div style="display:flex;gap:8px;"><button id="submitReview" class="btn">Envoyer</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="avis-list" class="avis-container"></div>
+        <button id="loadMore" class="load-more btn">Charger plus</button>
+
+        <script>
+            const API_BASE = 'http://localhost:3000/api';
+            let offset = 0, perPage = 25;
+            const avisList = document.getElementById('avis-list');
+
+            function escapeHtml(s) {
+                return s ? s.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])) : '';
+            }
+
+            async function fetchSummary() {
+                const res = await fetch(API_BASE + '/summary');
+                const data = await res.json();
+                document.getElementById('totalReviews').textContent = 'Total avis : ' + data.total;
+                document.getElementById('moyenne').textContent = (data.average ? data.average.toFixed(2) : '—') + ' / 5';
+            }
+
+            async function loadReviews(reset = false) {
+                perPage = parseInt(document.getElementById('perPage').value, 10);
+                if (reset) { offset = 0; avisList.innerHTML = ''; }
+
+                const res = await fetch(`${API_BASE}/reviews`);
+                const data = await res.json();
+
+                // On suit strictement l'ordre du JSON renvoyé par le serveur
+                const slice = data.reviews.slice(offset, offset + perPage);
+
+                slice.forEach(r => {
+                    const stars = '⭐'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+                    const div = document.createElement('div');
+                    div.className = 'avis';
+                    div.innerHTML = `
+                <div class="avis-header">
+                    <span class="nom">${escapeHtml(r.pseudo)}</span>
+                    <span class="note">${stars}</span>
+                </div>
+                <p class="commentaire">${escapeHtml(r.comment)}</p>
+            `;
+                    avisList.appendChild(div);
+                });
+
+                offset += slice.length;
+                document.getElementById('displayCount').textContent = offset;
+                document.getElementById('totalCount').textContent = data.total;
+                document.getElementById('loadMore').style.display = (offset < data.total ? 'block' : 'none');
+            }
+
+            async function submitReview() {
+                const pseudo = document.getElementById('pseudoInput').value.trim();
+                const rating = Number(document.getElementById('starsSelect').value);
+                const comment = document.getElementById('commentInput').value.trim();
+
+                if (!pseudo || !comment || !rating) return alert("Remplis pseudo, note et commentaire");
+
+                try {
+                    const res = await fetch(API_BASE + '/reviews', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ pseudo, rating, comment })
+                    });
+
+                    if (!res.ok) {
+                        const text = await res.text();
+                        return alert("Erreur serveur : " + text);
+                    }
+
+                    document.getElementById('pseudoInput').value = '';
+                    document.getElementById('commentInput').value = '';
+
+                    // Recharge le résumé et les avis dans l'ordre du JSON
+                    fetchSummary();
+                    loadReviews(true);
+
+                } catch (e) {
+                    console.error(e);
+                    alert("Erreur réseau ou serveur");
+                }
+            }
+
+            document.getElementById('submitReview').addEventListener('click', submitReview);
+            document.getElementById('refreshBtn').addEventListener('click', () => { loadReviews(true); fetchSummary(); });
+            document.getElementById('perPage').addEventListener('change', () => loadReviews(true));
+            document.getElementById('loadMore').addEventListener('click', () => loadReviews(false));
+
+            fetchSummary();
+            loadReviews(true);
+        </script>
+
+
+    </main>
+</body>
+
+</html>
