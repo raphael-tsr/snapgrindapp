@@ -168,6 +168,17 @@
             border: none;
             cursor: pointer;
         }
+        .bouton {
+            background: #bb86fc;
+            color: #121212;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            width: 100px;
+        }
     </style>
 </head>
 
@@ -190,28 +201,11 @@
 
     <main>
         <div class="top-stats">
-            <div class="avg">
-                <h2>Moyenne des avis</h2>
-                <p id="moyenne">— / 5</p>
-                <p class="small" id="totalReviews">Total avis : —</p>
-            </div>
             <div style="flex:1; min-width:260px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <div>
-                        <p class="small">Affichage : <span id="displayCount">0</span> / <span id="totalCount">0</span>
-                        </p>
-                    </div>
-                    <div class="controls">
-                        <label class="small" for="perPage">Afficher</label>
-                        <select id="perPage">
-                            <option value="10">10</option>
-                            <option value="25" selected>25</option>
-                            <option value="50">50</option>
-                        </select>
-                        <button id="refreshBtn" class="btn">Rafraîchir</button>
-                    </div>
                 </div>
                 <div class="add-form">
+                    <H1>Donnée votre avis</H1>
                     <div class="form-row"><label>Pseudo</label><input id="pseudoInput" type="text"
                             placeholder="Ex: DarkKnight"></div>
                     <div class="form-row"><label>Note</label><select id="starsSelect">
@@ -224,12 +218,15 @@
                     <div class="form-row"><label>Commentaire</label><textarea id="commentInput"
                             placeholder="Ton retour ..."></textarea></div>
                     <div style="display:flex;gap:8px;"><button id="submitReview" class="btn">Envoyer</button></div>
+                    <p>les commentaires sont afficher sur le discord</p>
+                    <br>
+                    <a class="bouton" href="https://discord.gg/MUfJaPjc">Lien du discord</a>
                 </div>
             </div>
         </div>
 
         <div id="avis-list" class="avis-container"></div>
-        <button id="loadMore" class="load-more btn">Charger plus</button>
+        
 
         <script>
             const API_BASE = 'http://localhost:3000/api';

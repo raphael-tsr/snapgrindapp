@@ -467,5 +467,12 @@
     "rating": 2,
     "comment": "Commande pas livrée à temps.",
     "createdAt": 1758373822130
+  },
+  {
+    "id": "rv_848717123399",
+    "pseudo": "StuntNight",
+    "rating": 5,
+    "comment": "Merci pour tout vos retour !",
+    "createdAt": 1760267848717
   }
 ]
