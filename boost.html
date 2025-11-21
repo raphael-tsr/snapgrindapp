@@ -54,7 +54,7 @@
           <p id="error-message">❌ Le maximum est 1 000 000. Si vous voulez plus, contactez-moi.</p>
         </div>
 
-        <p id="price">Prix : 1€ / ≈ 1.10$</p>
+        <p id="price">Prix : 0.05€ / ≈ 0.058$</p>
 
         <button type="submit" class="button_envoyer">Envoyer</button>
         <a href="https://discord.gg/MUfJaPjc" class="cta">Rejoindre le Discord</a>
@@ -96,18 +96,18 @@
       }
 
       if (score === 1000000) {
-        price = 140;
+        price = 7;
       } else if (score === 500000) {
-        price = 75;
+        price = 3.5;
       } else if (score === 100000) {
-        price = 17;
+        price = 0.8;
       } else if (score === 50000) {
-        price = 9;
+        price = 0.35;
       } else {
         price = score / 5000;
       }
 
-      const dollar = (price * 1.1).toFixed(2);
+      const dollar = (price * 1.15).toFixed(2);
       document.getElementById('price').textContent = `Prix : ${price}€ / ≈ ${dollar}$`;
     }
 
